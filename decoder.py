@@ -57,7 +57,7 @@ def ycbcr_to_rgb(Y: np.ndarray, Cb: np.ndarray, Cr: np.ndarray) -> Image.Image:
     Cb = Cb.astype(np.float64)
     Cr = Cr.astype(np.float64)
 
-    # Сдвигаем Cb и Cr обратно
+    
     Cb_shifted = Cb - 128.0
     Cr_shifted = Cr - 128.0
 
@@ -136,7 +136,6 @@ class BitReader:
         if value_bits < (1 << (category - 1)):
             return value_bits - ((1 << category) - 1)
         else:
-            # Положительное значение
             return value_bits
 
 def decode_dc_coefficients(num_dc_coeffs: int, inv_huffman_table: dict, reader: BitReader) -> list:
@@ -210,7 +209,7 @@ def decode_channel_data(num_h_blocks: int, num_w_blocks: int,
 
 def decode_image_data(encoded_bytes: bytes) -> Image.Image:
     """
-    Декодирует данные, созданные вашим encode_image.
+    Расхрючивание.
     """
     header_format = ">2sHHB"
     header_size = struct.calcsize(header_format)
