@@ -1,11 +1,4 @@
-import struct
-
-import numpy as np
-from PIL import Image
-
-from codes import *
-from encoder import ZIGZAG_INDICES_8x8, DCT_MATRIX, scale_quantization_matrix, Q_Y, Q_C
-
+from common import *
 
 def inverse_zigzag_scan(vector: np.ndarray, indices: list = ZIGZAG_INDICES_8x8):
     """Преобразует зигзаг-вектор обратно в 2D матрицу 8x8"""
@@ -207,7 +200,7 @@ def decode_channel_data(num_h_blocks: int, num_w_blocks: int,
     return original_channel
 
 
-def decode_image_data(encoded_bytes: bytes) -> Image.Image:
+def decode_image(encoded_bytes: bytes) -> Image.Image:
     """
     Расхрючивание.
     """
@@ -230,8 +223,6 @@ def decode_image_data(encoded_bytes: bytes) -> Image.Image:
     h_y, w_y = original_height, original_width
 
     factor = 2
-    h_cb = (h_y // factor)
-    w_cb = (w_y // factor)
 
     h_cb_trimmed_orig = h_y - (h_y % factor)
     w_cb_trimmed_orig = w_y - (w_y % factor)
