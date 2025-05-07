@@ -5,6 +5,8 @@ def rgb_to_ycbcr(img: Image.Image):
     arr = np.asarray(img).astype(np.float32)
     R, G, B = arr[..., 0], arr[..., 1], arr[..., 2]
 
+    print(R, G, B)
+
     Y = 0.299 * R + 0.587 * G + 0.114 * B
     Cb = 128 - 0.168736 * R - 0.331264 * G + 0.5 * B
     Cr = 128 + 0.5 * R - 0.418688 * G - 0.081312 * B
